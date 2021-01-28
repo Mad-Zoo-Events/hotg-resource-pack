@@ -1,0 +1,43 @@
+{
+  "targets": ["invert", "phosphor", "color", "previous"],
+  "passes": [
+    {
+      "name": "invert",
+      "intarget": "minecraft:main",
+      "outtarget": "invert",
+      "uniforms": [
+        {
+          "name": "InverseAmount",
+          "values": [1.0]
+        }
+      ]
+    },
+    {
+      "name": "phosphor",
+      "intarget": "invert",
+      "outtarget": "phosphor",
+      "auxtargets": [
+        {
+          "name": "PrevSampler",
+          "id": "previous"
+        }
+      ],
+      "uniforms": [
+        {
+          "name": "Phosphor",
+          "values": [0.95, 0.95, 0.95]
+        }
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "phosphor",
+      "outtarget": "previous"
+    },
+    {
+      "name": "wobble",
+      "intarget": "phosphor",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

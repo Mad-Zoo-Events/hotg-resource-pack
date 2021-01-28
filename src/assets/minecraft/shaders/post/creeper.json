@@ -1,0 +1,49 @@
+{
+  "targets": ["color", "deconverge", "resolution"],
+  "passes": [
+    {
+      "name": "color_convolve",
+      "intarget": "minecraft:main",
+      "outtarget": "color",
+      "uniforms": [
+        {
+          "name": "RedMatrix",
+          "values": [0.3, 0.6, 0.0]
+        },
+        {
+          "name": "GreenMatrix",
+          "values": [-0.3, 0.8, -0.3]
+        },
+        {
+          "name": "BlueMatrix",
+          "values": [-0.7, -0.5, 2.0]
+        }
+      ]
+    },
+    {
+      "name": "deconverge",
+      "intarget": "color",
+      "outtarget": "deconverge"
+    },
+    {
+      "name": "bits",
+      "intarget": "deconverge",
+      "outtarget": "resolution",
+      "uniforms": [
+        {
+          "name": "Resolution",
+          "values": [8.0]
+        },
+        {
+          "name": "MosaicSize",
+          "values": [12.0]
+        }
+      ]
+    },
+    {
+      "name": "scan_pincushion",
+      "intarget": "resolution",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

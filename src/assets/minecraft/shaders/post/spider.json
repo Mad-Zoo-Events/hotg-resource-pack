@@ -1,0 +1,34 @@
+{
+  "targets": ["sobel", "color"],
+  "passes": [
+    {
+      "name": "sobel",
+      "intarget": "minecraft:main",
+      "outtarget": "sobel"
+    },
+    {
+      "name": "color_convolve",
+      "intarget": "sobel",
+      "outtarget": "color",
+      "uniforms": [
+        {
+          "name": "RedMatrix",
+          "values": [0.0, 0.0, 0.0]
+        },
+        {
+          "name": "GreenMatrix",
+          "values": [-0.5, 2.0, 2.0]
+        },
+        {
+          "name": "BlueMatrix",
+          "values": [2.0, -0.5, 2.0]
+        }
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "color",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}
