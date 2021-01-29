@@ -1,5 +1,9 @@
 #!/bin/bash
-zip -9 -r out/HOTG.zip src/*
+rm out/HOTG.zip
+
+cd src
+zip -9 -r ../out/HOTG.zip .
+cd ..
 
 CURRENT_VERSION=$(aws s3 ls s3://madzoo.events/packs/ | grep -o "HOTG.*.zip" | sed "s/[^0-9+]//g")
 NEXT_VERSION=$((CURRENT_VERSION + 1))
